@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 public class Main {
   public static void main(String[] args){
@@ -13,8 +15,9 @@ public class Main {
          serverSocket.receive(packet);
          System.out.println("Received data");
 
-         final byte[] bufResponse = new byte[512];
-         final DatagramPacket packetResponse = new DatagramPacket(bufResponse, bufResponse.length, packet.getSocketAddress());
+         final ByteBuffer bufResponse = ByteBuffer.allocate(512).order(ByteOrder.BIG_ENDIAN).putShort((short) 1234);
+
+         final DatagramPacket packetResponse = new DatagramPacket(bufResponse.array(), 512, packet.getSocketAddress());
          serverSocket.send(packetResponse);
        }
      } catch (IOException e) {
