@@ -1,6 +1,6 @@
 🎉 Welcome to the DIY DNS Server 🎉
 
-![App Screenshot](https://files.oaiusercontent.com/file-EMSieHf3xXvw8nBvGfEfSe?se=2025-01-25T19%3A20%3A32Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D3ff6511d-7bbe-4079-82f0-a1d7e4e80469.webp&sig=P%2BJUZLQ0eJGLw5%2B1/PHvf61Z6%2BYRoztz/WaFQPCcp7U%3D)
+![App Screenshot](https://www.indusface.com/wp-content/uploads/2024/10/DNS-lookup-process-.png)
 
 📡 About This Project
 Ever wondered how the Internet works behind the scenes? 🧐 When you type a domain like www.google.com into your browser, it magically turns into an IP address. But how? 🤔 This transformation is done by DNS (Domain Name System), and guess what? You’re about to learn how to build your very own DNS server!
