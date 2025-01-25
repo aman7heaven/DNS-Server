@@ -7,8 +7,8 @@ import java.nio.ByteBuffer;
  * It provides methods to convert the DNS record into a byte array that can be included in a DNS response.
  */
 public class DNSRecord {
-    private String domainName; // The domain name associated with the DNS record
-    private String ipAddress; // The IP address corresponding to the domain name
+    private String domainName;
+    private String ipAddress;
 
     /**
      * Constructor to initialize a DNS record with a domain name and an IP address.
@@ -28,14 +28,14 @@ public class DNSRecord {
      * @throws UnknownHostException If the IP address is invalid or cannot be resolved.
      */
     public byte[] toBytes() throws UnknownHostException {
-        ByteBuffer buffer = ByteBuffer.allocate(32); // Allocate a buffer to hold the record
+        ByteBuffer buffer = ByteBuffer.allocate(32);
 
         // Step 1: Write the domain name
         // The domain name is split into labels (substrings separated by '.').
         // Each label is preceded by a byte indicating its length.
         for (String label : domainName.split("\\.")) {
-            buffer.put((byte) label.length()); // Write the length of the label
-            buffer.put(label.getBytes()); // Write the label itself
+            buffer.put((byte) label.length());
+            buffer.put(label.getBytes());
         }
         buffer.put((byte) 0); // End of the domain name (null byte)
 
@@ -55,9 +55,8 @@ public class DNSRecord {
         // Step 5: Write the IP address
         // Convert the IP address from a string to a byte array and write it to the buffer.
         byte[] ipBytes = InetAddress.getByName(ipAddress).getAddress(); // Convert IP address to byte array
-        buffer.put(ipBytes); // Write the IP bytes to the buffer
+        buffer.put(ipBytes);
 
-        // Return the byte array representation of the DNS record
         return buffer.array();
     }
 }

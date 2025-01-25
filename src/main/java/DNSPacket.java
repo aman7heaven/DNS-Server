@@ -65,7 +65,7 @@ public class DNSPacket {
         // Remove the trailing "." from the domain name
         dnsPacket.domainName = domainName.substring(0, domainName.length() - 1);
 
-        return dnsPacket; // Return the constructed DNSPacket object
+        return dnsPacket;
     }
 
     /**
@@ -75,9 +75,9 @@ public class DNSPacket {
      */
     public DNSPacket createResponse() {
         DNSPacket response = new DNSPacket();
-        response.transactionId = this.transactionId; // Reuse the same transaction ID
-        response.isQuery = false; // Set the response flag to false (this is a response, not a query)
-        response.domainName = this.domainName; // Set the domain name for the response
+        response.transactionId = this.transactionId; // Reusing the same transaction ID
+        response.isQuery = false;
+        response.domainName = this.domainName;
         return response;
     }
 
@@ -90,9 +90,9 @@ public class DNSPacket {
     public void addAnswer(String domainName, String ipAddress) {
         DNSRecord dnsRecord = new DNSRecord(domainName, ipAddress); // Create a new DNS record
         if (answers == null) {
-            answers = new ArrayList<>(); // Initialize the list if it's not already initialized
+            answers = new ArrayList<>();
         }
-        answers.add(dnsRecord); // Add the DNS record to the list of answers
+        answers.add(dnsRecord);
     }
 
     /**
@@ -106,7 +106,7 @@ public class DNSPacket {
         ByteBuffer buffer = ByteBuffer.allocate(512); // DNS packet size (usually no more than 512 bytes)
 
         // Step 1: Write the transaction ID
-        buffer.put(transactionId); // Write the 2-byte transaction ID
+        buffer.put(transactionId); // Writing the 2-byte transaction ID
 
         // Step 2: Write the Flags (response flag set and success code)
         buffer.putShort((short) 0x8180); // 0x8180: Response (1) and success (0) flag
@@ -117,11 +117,11 @@ public class DNSPacket {
         buffer.putShort((short) 0); // Authority RRs (none)
         buffer.putShort((short) 0); // Additional RRs (none)
 
-        // Step 4: Write the domain name question
+        // Step 4: Writing the domain name question
         // Each domain name is written as labels, starting with a byte indicating the length of the label.
         for (String label : domainName.split("\\.")) {
-            buffer.put((byte) label.length()); // Write the length of the label
-            buffer.put(label.getBytes()); // Write the label itself
+            buffer.put((byte) label.length());
+            buffer.put(label.getBytes()); // Writing the label
         }
         buffer.put((byte) 0); // End of the domain name (null byte)
 
@@ -132,10 +132,9 @@ public class DNSPacket {
         // Step 6: Write each answer (DNS records)
         // For each DNS record in the answers list, we convert it to bytes and append it to the buffer
         for (DNSRecord answer : answers) {
-            buffer.put(answer.toBytes()); // Convert the DNS record to bytes and add it to the buffer
+            buffer.put(answer.toBytes()); // Converting the DNS record to bytes and add it to the buffer
         }
 
-        // Step 7: Return the byte array representation of the DNS packet
         return buffer.array(); // Convert the buffer to a byte array
     }
 }
