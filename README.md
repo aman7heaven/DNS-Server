@@ -27,8 +27,6 @@ git clone https://github.com/aman7heaven/DNS-Server.git
    This project is built with Java 17+. If you don’t have it installed, head over to Oracle's JDK download page and get
    Java set up.
 
-Alternatively, if you're using Amazon Corretto, you can download it from here.
-
 3. Run the DNS Server
    To run the DNS server, simply compile and execute the Main.java file. This will start the DNS server on port 53, the
    default port for DNS queries.
