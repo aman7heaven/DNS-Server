@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Default port for DNS servers
-        final int port = 2053;
+        final int port = 53;
 
         // DatagramSocket for listening to incoming DNS queries
         try (DatagramSocket socket = new DatagramSocket(port)) {
